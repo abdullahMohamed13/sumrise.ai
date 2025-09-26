@@ -5,9 +5,9 @@ import { ThemeProvider } from './components/theme-context.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // Pages
 import Home from './pages/Home.tsx'
-import ChatBot from './components/custom/ChatBot.tsx'
+import ChatBot from './components/custom/chat/ChatBot.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
-import Layout from '@/components/custom/LayOut.tsx'
+import Layout from '@/components/custom/Layout.tsx'
 
 const router = createBrowserRouter([
   {
@@ -17,11 +17,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        element: <main className='px-10 py-12 md:py-18'>
+            <Home />
+          </main>
       },
       {
         path: 'chat',
-        element: <ChatBot />
+        element: <main className='p-3'>
+          <ChatBot />
+        </main>
       },
     ]
   },
@@ -30,7 +34,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <RouterProvider router={router} />
+      <main className=''>
+        <RouterProvider router={router} />
+      </main>
     </ThemeProvider>
   </StrictMode>,
 )
